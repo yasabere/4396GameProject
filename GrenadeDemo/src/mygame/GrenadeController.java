@@ -4,6 +4,8 @@
  */
 package mygame;
 
+import com.jme3.bullet.PhysicsSpace;
+
 /**
  *
  * @author Yaw Asabere
@@ -16,5 +18,9 @@ public class GrenadeController {
         this.main = main;
         
         
+    }
+    
+    private PhysicsSpace getPhysicsSpace(){
+        return main.bullet.getPhysicsSpace();
     }
 }
