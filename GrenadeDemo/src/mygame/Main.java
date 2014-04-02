@@ -1,6 +1,7 @@
 package mygame;
 
 import com.jme3.app.SimpleApplication;
+import com.jme3.bullet.BulletAppState;
 import com.jme3.material.Material;
 import com.jme3.math.ColorRGBA;
 import com.jme3.math.Vector3f;
@@ -14,6 +15,8 @@ import com.jme3.scene.shape.Box;
  */
 public class Main extends SimpleApplication {
 
+    BulletAppState bullet;
+    
     public static void main(String[] args) {
         Main app = new Main();
         app.start();
@@ -21,19 +24,14 @@ public class Main extends SimpleApplication {
 
     @Override
     public void simpleInitApp() {
-        /*
-        Box b = new Box(1, 1, 1);
-        Geometry geom = new Geometry("Box", b);
-
-        Material mat = new Material(assetManager, "Common/MatDefs/Misc/Unshaded.j3md");
-        mat.setColor("Color", ColorRGBA.Blue);
-        geom.setMaterial(mat);
-
-        rootNode.attachChild(geom);
-        */
-            
+        
         Grenade test = new Grenade(this);
         rootNode.attachChild(test);
+        
+        bullet = new BulletAppState();
+        bullet.setDebugEnabled(true);
+        
+        stateManager.attach(bullet);
     }
 
     @Override
