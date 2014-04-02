@@ -30,7 +30,7 @@ public class GrenadeController {
             timer -= 1;
         }
         else {
-            sdfsdf
+            
         }
      
     }
