@@ -5,19 +5,26 @@
 package mygame;
 
 import com.jme3.bullet.PhysicsSpace;
+import com.jme3.input.controls.AnalogListener;
 import com.jme3.math.Vector3f;
+import com.jme3.renderer.RenderManager;
+import com.jme3.renderer.ViewPort;
+import com.jme3.scene.control.AbstractControl;
 
 /**
  *
  * @author Yaw Asabere
  */
-public class GrenadeController {
+public class GrenadeController  extends AbstractControl implements AnalogListener  {
     
-    private final Main main;
-    private int timer = 0;
+    private Main main;
+    private Grenade grenade;
+    private int timer = 1000;
+    private boolean live = true;
     
-    public GrenadeController(Main main){
-        this.main = main;
+    public GrenadeController(Grenade grenade){
+        this.main = grenade.main;
+        this.grenade = grenade;
     }
     
     private PhysicsSpace getPhysicsSpace(){
@@ -26,12 +33,27 @@ public class GrenadeController {
     
     protected void controlUpdate(float tpf) {
         
-        if (timer > 0){
-            timer -= 1;
-        }
-        else {
-            
-        }
-     
+        if (live){
+            if (timer > 0){
+                timer -= 1;
+            }
+            else {
+                live = false;
+                this.grenade = null;
+                //this = null;
+                
+                System.out.println("explosion");
+            }
+        }   
+        
+    }
+
+    @Override
+    protected void controlRender(RenderManager rm, ViewPort vp) {
+        //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    public void onAnalog(String name, float value, float tpf) {
+        //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 }
