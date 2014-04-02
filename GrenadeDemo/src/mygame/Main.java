@@ -8,6 +8,7 @@ import com.jme3.math.Vector3f;
 import com.jme3.renderer.RenderManager;
 import com.jme3.scene.Geometry;
 import com.jme3.scene.shape.Box;
+import java.util.ArrayList;
 
 /**
  * test
@@ -16,6 +17,7 @@ import com.jme3.scene.shape.Box;
 public class Main extends SimpleApplication {
 
     BulletAppState bullet;
+    private ArrayList<Grenade> grenades = new ArrayList<Grenade>();
     
     public static void main(String[] args) {
         Main app = new Main();
@@ -36,7 +38,9 @@ public class Main extends SimpleApplication {
 
     @Override
     public void simpleUpdate(float tpf) {
-        //TODO: add update code
+        for (Grenade g : grenades){
+            g.controlUpdate(tpf);
+        }
     }
 
     @Override
