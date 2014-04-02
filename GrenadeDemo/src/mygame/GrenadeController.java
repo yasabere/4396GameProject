@@ -10,4 +10,11 @@ package mygame;
  */
 public class GrenadeController {
     
+    private final Main main;
+    
+    public GrenadeController(Main main){
+        this.main = main;
+        
+        
+    }
 }
