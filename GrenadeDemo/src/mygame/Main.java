@@ -21,6 +21,7 @@ public class Main extends SimpleApplication {
 
     @Override
     public void simpleInitApp() {
+        /*
         Box b = new Box(1, 1, 1);
         Geometry geom = new Geometry("Box", b);
 
@@ -29,6 +30,10 @@ public class Main extends SimpleApplication {
         geom.setMaterial(mat);
 
         rootNode.attachChild(geom);
+        */
+            
+        Grenade test = new Grenade(this);
+        rootNode.attachChild(test);
     }
 
     @Override
