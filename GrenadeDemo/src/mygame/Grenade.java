@@ -41,4 +41,8 @@ public class Grenade extends Node {
         mat.setColor("Color", ColorRGBA.Green);
         geo_grenade.setMaterial(mat);
     }
+
+    void controlUpdate(float tpf) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 }
