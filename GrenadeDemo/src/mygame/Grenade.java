@@ -28,7 +28,7 @@ public class Grenade extends Node {
         
         main.getRootNode().attachChild(geo_grenade);
     }
-    
+
     private void initMaterials() {
         Material mat = new Material(main.getAssetManager(), "Common/MatDefs/Misc/Unshaded.j3md");
         mat.setColor("Color", ColorRGBA.Green);
