@@ -20,10 +20,14 @@ public class Grenade extends Node {
     
     Main main;
     Geometry geo_grenade;
-  
+    GrenadeController controller;
+    
     public Grenade(Main main){
         
         this.main = main;
+        
+        this.controller = new GrenadeController(this);
+        this.addControl(this.controller);
        
         this.initGeometries();
         this.initMaterials();
@@ -45,4 +49,5 @@ public class Grenade extends Node {
     void controlUpdate(float tpf) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
+    
 }
