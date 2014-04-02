@@ -1,0 +1,42 @@
+Materializer App - Function List
+
+Erase()
+  - erases all selected points
+  - sets points to false
+  - clears array
+
+Send()
+  - sends array of points to jmonkey program
+  
+Set_Point()
+  - sets current point to true
+  - adds point to array
+  - draws line (if previous point exists)
+
+Is_Connected()
+  - if end point equals start point, set to true
+  - if true, change color of line from red => green
+
+Draw_Line()
+  - draws line on app screen between points
+
+Remove()
+  - removes last value put in array (if any)
+  - sets removed point value to false
+  - erases last line drawn
+
+Check_Point()
+  - checks boolean value of point
+
+
+
+|***IF TIME PERMITS***|
+
+Overlap()
+  - if point selected is already set to true, do not add address to array
+  - if point selected (regardless of boolean value) crosses over a drawn line/selected point => do not add
+
+
+Is_Corner()
+  - if selected point is corner and 3 surrounding points are set to true or point would require overlap to continue drawing
+	=> point is unselectable
