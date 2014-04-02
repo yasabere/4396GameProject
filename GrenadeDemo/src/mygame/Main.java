@@ -34,6 +34,8 @@ public class Main extends SimpleApplication {
         bullet.setDebugEnabled(true);
         
         stateManager.attach(bullet);
+        
+        System.out.println("test");
     }
 
     @Override
