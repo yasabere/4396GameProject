@@ -27,13 +27,13 @@ public class Main extends SimpleApplication {
     @Override
     public void simpleInitApp() {
         
-        Grenade test = new Grenade(this);
-        rootNode.attachChild(test);
-        
         bullet = new BulletAppState();
         bullet.setDebugEnabled(true);
         
         stateManager.attach(bullet);
+        
+        Grenade test = new Grenade(this);
+        rootNode.attachChild(test);
         
         System.out.println("test");
     }
