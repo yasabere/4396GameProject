@@ -34,11 +34,9 @@ public class GrenadeController  extends AbstractControl implements AnalogListene
     }
     
     private void InitPhysics(){
-        RigidBodyControl phySmall = new RigidBodyControl(1.0f); // Dynamic: mass > 0
-        this.grenade.addControl(phySmall);
+        RigidBodyControl phySmall = new RigidBodyControl(10.0f); // Dynamic: mass > 0
+        this.grenade.geo_grenade.addControl(phySmall);
         main.bullet.getPhysicsSpace().add(phySmall);
-        
-        
     }
     
     protected void controlUpdate(float tpf) {
@@ -49,7 +47,7 @@ public class GrenadeController  extends AbstractControl implements AnalogListene
             }
             else {
                 live = false;
-                this.grenade = null;
+                //this.grenade = null;
                 //this = null;
                 
                 System.out.println("explosion");

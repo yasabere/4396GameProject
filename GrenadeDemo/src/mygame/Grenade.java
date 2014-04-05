@@ -26,11 +26,11 @@ public class Grenade extends Node {
         
         this.main = main;
         
-        this.controller = new GrenadeController(this);
-        this.addControl(this.controller);
-       
         this.initGeometries();
         this.initMaterials();
+        
+        this.controller = new GrenadeController(this);
+        this.addControl(this.controller);
 
     }
     
