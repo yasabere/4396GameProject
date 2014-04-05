@@ -5,6 +5,7 @@
 package mygame;
 
 import com.jme3.bullet.PhysicsSpace;
+import com.jme3.bullet.control.RigidBodyControl;
 import com.jme3.input.controls.AnalogListener;
 import com.jme3.math.Vector3f;
 import com.jme3.renderer.RenderManager;
@@ -25,10 +26,19 @@ public class GrenadeController  extends AbstractControl implements AnalogListene
     public GrenadeController(Grenade grenade){
         this.main = grenade.main;
         this.grenade = grenade;
+        InitPhysics();
     }
     
     private PhysicsSpace getPhysicsSpace(){
         return main.bullet.getPhysicsSpace();
+    }
+    
+    private void InitPhysics(){
+        RigidBodyControl phySmall = new RigidBodyControl(1.0f); // Dynamic: mass > 0
+        this.grenade.addControl(phySmall);
+        main.bullet.getPhysicsSpace().add(phySmall);
+        
+        
     }
     
     protected void controlUpdate(float tpf) {
@@ -44,7 +54,7 @@ public class GrenadeController  extends AbstractControl implements AnalogListene
                 
                 System.out.println("explosion");
             }
-        }   
+        }
         
     }
 
