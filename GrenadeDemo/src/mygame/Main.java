@@ -35,6 +35,10 @@ public class Main extends SimpleApplication {
         Grenade test = new Grenade(this);
         rootNode.attachChild(test);
         
+        Field field = new Field(this);
+        field.setLocalTranslation(0, -10f, 0);
+        rootNode.attachChild(field);
+        
         System.out.println("test");
     }
 

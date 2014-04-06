@@ -70,4 +70,14 @@ public class GrenadeController  extends AbstractControl implements AnalogListene
     public void onAnalog(String name, float value, float tpf) {
         //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
+    
+    public void makeShape(){
+        
+        //get grenade position
+        Vector3f grenadePos = grenade.getWorldTranslation();
+        
+        //create object set object at the position of the grenade
+        //apply physics to object
+        
+    }
 }
