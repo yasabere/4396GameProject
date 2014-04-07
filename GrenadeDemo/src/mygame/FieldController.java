@@ -27,7 +27,7 @@ public class FieldController extends AbstractControl implements AnalogListener  
     }
     
     private void InitPhysics(){
-        RigidBodyControl phySmall = new RigidBodyControl(0.00001f); // Dynamic: mass > 0
+        RigidBodyControl phySmall = new RigidBodyControl(1f); // Dynamic: mass > 0
         this.field.addControl(phySmall);
         main.bullet.getPhysicsSpace().add(phySmall);
     }

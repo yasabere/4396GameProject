@@ -12,7 +12,9 @@ import com.jme3.math.ColorRGBA;
 import com.jme3.math.Vector3f;
 import com.jme3.renderer.RenderManager;
 import com.jme3.renderer.ViewPort;
+import com.jme3.scene.Geometry;
 import com.jme3.scene.control.AbstractControl;
+import com.jme3.scene.shape.Box;
 
 /**
  *
@@ -56,6 +58,8 @@ public class GrenadeController  extends AbstractControl implements AnalogListene
                 mat.setColor("Color", ColorRGBA.Red);
                 grenade.setMaterial(mat);
                 
+                makeShape();
+                
                 System.out.println("explosion");
             }
         }
@@ -74,8 +78,15 @@ public class GrenadeController  extends AbstractControl implements AnalogListene
     public void makeShape(){
         
         //get grenade position
-        Vector3f grenadePos = grenade.getWorldTranslation();
+        Vector3f grenadePos = grenade.getLocalTranslation();
         
+        Material mat = new Material(main.getAssetManager(), "Common/MatDefs/Misc/Unshaded.j3md");
+        mat.setColor("Color", ColorRGBA.Blue);
+        
+        Geometry cannon = new Geometry("ground", new Box(2f, 2f, 2f));
+        cannon.setMaterial(mat);
+        cannon.setLocalTranslation(grenadePos);
+        main.getRootNode().attachChild(cannon);
         //create object set object at the position of the grenade
         //apply physics to object
         
