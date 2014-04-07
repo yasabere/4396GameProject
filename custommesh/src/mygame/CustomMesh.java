@@ -192,9 +192,9 @@ public class CustomMesh extends Mesh {
        }
       
        Vector3f v1, v2, cross;
-       float v1x, v1y, v1z, v2x, v2y, v2z;
+       float v1x, v1y, v2x, v2y;
        
-       for (i = length * 6; i < length * 9; i += 3) {
+       for (i = length; i < length * 3; i += 3) {
            
            //vector from frontVerts[i] to frontVerts[i + 1]
            v1x = frontVerts[(i + 1) % length].x - frontVerts[i % length].x;
@@ -203,10 +203,9 @@ public class CustomMesh extends Mesh {
            //vector from frontVerts[i] to backVerts[i + 1]
            v2x = backVerts[(i + 1) % length].x - frontVerts[i % length].x;
            v2y = backVerts[(i + 1) % length].y - frontVerts[i % length].y;
-           v2z = backVerts[(i + 1) % length].z - frontVerts[i % length].z;
            
            v1 = new Vector3f(v1x, v1y, 0);
-           v2 = new Vector3f(v2x, v2y, v2z);
+           v2 = new Vector3f(v2x, v2y, depth);
 
            //calculate cross product
            v1 = v1.normalize();
@@ -214,9 +213,21 @@ public class CustomMesh extends Mesh {
            cross = v1.cross(v2);
            cross = cross.normalize();
            
-           normals[i] = cross.x;
-           normals[i + 1] = cross.y;
-           normals[i + 2] = cross.z;
+           normals[i + length * 6] = cross.x;
+           normals[i + 1 + length * 6] = cross.y;
+           normals[i + 2 + length * 6] = cross.z;
+           
+           normals[i + length * 9] = cross.x;
+           normals[i + 1 + length * 9] = cross.y;
+           normals[i + 2 + length * 9] = cross.z;
+           
+           normals[i + length * 12] = cross.x;
+           normals[i + 1 + length * 12] = cross.y;
+           normals[i + 2 + length * 12] = cross.z;
+           
+           normals[i + length * 15] = cross.x;
+           normals[i + 1 + length * 15] = cross.y;
+           normals[i + 2 + length * 15] = cross.z;
        }
    }
    
