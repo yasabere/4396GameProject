@@ -4,6 +4,7 @@
  */
 package mygame;
 
+import com.bulletphysics.dynamics.RigidBody;
 import com.jme3.bullet.PhysicsSpace;
 import com.jme3.bullet.control.RigidBodyControl;
 import com.jme3.input.controls.AnalogListener;
@@ -24,7 +25,8 @@ public class GrenadeController  extends AbstractControl implements AnalogListene
     
     private Main main;
     private Grenade grenade;
-    private int timer = 1000;
+    private RigidBodyControl grenadeRB;
+    private int timer = 3000;
     private boolean live = true;
     
     public GrenadeController(Grenade grenade){
@@ -38,9 +40,9 @@ public class GrenadeController  extends AbstractControl implements AnalogListene
     }
     
     private void InitPhysics(){
-        RigidBodyControl phySmall = new RigidBodyControl(10.0f); // Dynamic: mass > 0
-        this.grenade.geo_grenade.addControl(phySmall);
-        main.bullet.getPhysicsSpace().add(phySmall);
+        grenadeRB = new RigidBodyControl(10.0f); // Dynamic: mass > 0
+        this.grenade.geo_grenade.addControl(grenadeRB);
+        main.bullet.getPhysicsSpace().add(grenadeRB);
     }
     
     protected void controlUpdate(float tpf) {
@@ -78,7 +80,7 @@ public class GrenadeController  extends AbstractControl implements AnalogListene
     public void makeShape(){
         
         //get grenade position
-        Vector3f grenadePos = grenade.getLocalTranslation();
+        Vector3f grenadePos = grenadeRB.getPhysicsLocation();
         
         Material mat = new Material(main.getAssetManager(), "Common/MatDefs/Misc/Unshaded.j3md");
         mat.setColor("Color", ColorRGBA.Blue);
