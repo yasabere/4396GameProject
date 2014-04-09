@@ -41,15 +41,15 @@ public class Shape extends Node {
         mat1 = new Material(main.getAssetManager(), "Common/MatDefs/Misc/Unshaded.j3md");
 
 
-        mat1.setColor("Color", ColorRGBA.DarkGray);
+        mat1.setColor("Color", ColorRGBA.Blue);
         //mat1.setFloat("Shininess", 4f); // shininess from 1-128
 
         geo.setMaterial(mat1);
     }
     
     private void initGeometries(){
-        Box box = new Box(10f, .1f, 10f);
-        geo = new Geometry("floor", box);
+        Box box = new Box(1f, 1f, 1f);
+        geo = new Geometry("shape", box);
         this.attachChild(geo);
     }
     

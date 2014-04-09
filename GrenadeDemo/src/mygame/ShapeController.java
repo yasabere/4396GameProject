@@ -18,6 +18,7 @@ public class ShapeController extends AbstractControl implements AnalogListener  
     
     Shape shape;
     Main main;
+    RigidBodyControl shapeRB;
     
     public ShapeController(Shape shape){
         this.shape = shape;
@@ -27,13 +28,11 @@ public class ShapeController extends AbstractControl implements AnalogListener  
     }
     
     private void InitPhysics(){
-        RigidBodyControl phySmall = new RigidBodyControl(1000f); // Dynamic: mass > 0
+        shapeRB = new RigidBodyControl(10f); // Dynamic: mass > 0
         
-        this.shape.addControl(phySmall);
+        this.shape.addControl(shapeRB);
         
-        phySmall.setKinematic(Boolean.TRUE);
-        
-        main.bullet.getPhysicsSpace().add(phySmall);
+        main.bullet.getPhysicsSpace().add(shapeRB);
     }
 
     @Override
@@ -48,5 +47,9 @@ public class ShapeController extends AbstractControl implements AnalogListener  
 
     public void onAnalog(String name, float value, float tpf) {
         //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+    
+    public RigidBodyControl getRigidBodyControl(){
+        return shapeRB;
     }
 }

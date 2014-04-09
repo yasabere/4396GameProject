@@ -26,7 +26,7 @@ public class GrenadeController  extends AbstractControl implements AnalogListene
     private Main main;
     private Grenade grenade;
     private RigidBodyControl grenadeRB;
-    private int timer = 3000;
+    private int timer = 1000;
     private boolean live = true;
     
     public GrenadeController(Grenade grenade){
@@ -78,21 +78,18 @@ public class GrenadeController  extends AbstractControl implements AnalogListene
     }
     
     public void makeShape(){
-        
-        //get grenade position
-        Vector3f grenadePos = grenadeRB.getPhysicsLocation();
-        
-        Material mat = new Material(main.getAssetManager(), "Common/MatDefs/Misc/Unshaded.j3md");
-        mat.setColor("Color", ColorRGBA.Blue);
-        
-        Geometry cannon = new Geometry("ground", new Box(2f, 2f, 2f));
-        cannon.setMaterial(mat);
-        cannon.setLocalTranslation(grenadePos);
-        main.getRootNode().attachChild(cannon);
-        //create object set object at the position of the grenade
-        //apply physics to object
-        
        
+       grenadeRB.destroy();
+       grenadeRB.setEnabled(false);
+        
+       Vector3f grenadePos = grenadeRB.getPhysicsLocation();  
+        
+       Shape shape = new Shape(main);
+       
+       main.getRootNode().attachChild(shape);
+       
+       shape.controller.getRigidBodyControl().setPhysicsLocation(grenadePos);
+         
     }
     
     public RigidBodyControl getRigidBodyControl(){
