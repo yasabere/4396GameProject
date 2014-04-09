@@ -92,5 +92,11 @@ public class GrenadeController  extends AbstractControl implements AnalogListene
         //create object set object at the position of the grenade
         //apply physics to object
         
+       
     }
+    
+    public RigidBodyControl getRigidBodyControl(){
+        return grenadeRB;
+    }
+    
 }

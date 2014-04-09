@@ -35,6 +35,14 @@ public class Main extends SimpleApplication {
         Grenade test = new Grenade(this);
         rootNode.attachChild(test);
         
+        Vector3f dir  = new Vector3f();
+        
+        dir.setZ(30f);
+        //dir.y = 0f;
+        //dir.z = 0;
+        
+        test.controller.getRigidBodyControl().setLinearVelocity(cam.getDirection().mult(1));
+        
         Field field = new Field(this);
         field.setLocalTranslation(0, -10f, 0);
         rootNode.attachChild(field);
