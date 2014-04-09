@@ -3,6 +3,7 @@ package mygame;
 import com.jme3.bullet.BulletAppState;
 import com.jme3.bullet.collision.shapes.CapsuleCollisionShape;
 import com.jme3.bullet.control.CharacterControl;
+import com.jme3.font.BitmapText;
 import com.jme3.input.InputManager;
 import com.jme3.input.KeyInput;
 import com.jme3.input.controls.ActionListener;
@@ -50,12 +51,14 @@ public class Player implements ActionListener{
     inputManager.addMapping("Backward", new KeyTrigger(KeyInput.KEY_S));
     inputManager.addMapping("Jump", new KeyTrigger(KeyInput.KEY_SPACE));
     inputManager.addMapping("Warp", new KeyTrigger(KeyInput.KEY_K));
+    inputManager.addMapping("PickUp", new KeyTrigger(KeyInput.KEY_E));
     inputManager.addListener(this, "Left");
     inputManager.addListener(this, "Right");
     inputManager.addListener(this, "Forward");
     inputManager.addListener(this, "Backward");
     inputManager.addListener(this, "Jump");
     inputManager.addListener(this, "Warp");
+    inputManager.addListener(this, "PickUp");
   }
     
     public void onAction(String binding, boolean isPressed, float tpf) {
