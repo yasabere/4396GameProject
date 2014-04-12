@@ -10,6 +10,7 @@ import com.jme3.bullet.control.RigidBodyControl;
 import com.jme3.input.controls.AnalogListener;
 import com.jme3.material.Material;
 import com.jme3.math.ColorRGBA;
+import com.jme3.math.FastMath;
 import com.jme3.math.Vector3f;
 import com.jme3.renderer.RenderManager;
 import com.jme3.renderer.ViewPort;
@@ -84,7 +85,14 @@ public class GrenadeController  extends AbstractControl implements AnalogListene
         
        Vector3f grenadePos = grenadeRB.getPhysicsLocation();  
         
-       Shape shape = new Shape(main);
+       TerrainMold shape;
+       
+       if (false){
+           //shape = new Shape(main);
+       }
+       else{
+           shape = new TerrainMold(main);
+       }
        
        main.getRootNode().attachChild(shape);
        
