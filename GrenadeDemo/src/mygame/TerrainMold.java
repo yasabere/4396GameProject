@@ -24,7 +24,7 @@ public class TerrainMold extends Node {
     Main main;
     Geometry geo;
     Material mat1;
-    ShapeController controller;
+    TerrainMoldController controller;
     
     public TerrainMold(Main main){
      this.main = main;
@@ -32,8 +32,8 @@ public class TerrainMold extends Node {
      initGeometries();
      initMaterials();
      
-     //this.controller = new ShapeController(this);
-     //this.addControl(this.controller);
+     this.controller = new TerrainMoldController(this);
+     this.addControl(this.controller);
      
     }
     

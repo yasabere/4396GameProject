@@ -6,6 +6,7 @@ package mygame;
 
 import com.jme3.bullet.control.RigidBodyControl;
 import com.jme3.input.controls.AnalogListener;
+import com.jme3.math.Vector3f;
 import com.jme3.renderer.RenderManager;
 import com.jme3.renderer.ViewPort;
 import com.jme3.scene.control.AbstractControl;
@@ -16,13 +17,15 @@ import com.jme3.scene.control.AbstractControl;
  */
 public class TerrainMoldController extends AbstractControl implements AnalogListener  {
     
-    Shape shape;
+    TerrainMold shape;
     Main main;
     RigidBodyControl shapeRB;
+    int timer, max_timer;
     
-    public TerrainMoldController(Shape shape){
+    public TerrainMoldController(TerrainMold shape){
         this.shape = shape;
         this.main = shape.main;
+        this.max_timer = 500;
         
         InitPhysics();
     }
@@ -32,14 +35,22 @@ public class TerrainMoldController extends AbstractControl implements AnalogList
         
         this.shape.addControl(shapeRB);
         
-        shapeRB.setKinematic(Boolean.TRUE);
+        //shapeRB.setKinematic(Boolean.TRUE);
         
         main.bullet.getPhysicsSpace().add(shapeRB);
     }
 
     @Override
     protected void controlUpdate(float tpf) {
-        //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        
+        if (timer < max_timer){
+            timer ++;
+            //shapeRB.setPhysicsLocation(Vector3f.ZERO);
+        }
+        else{
+
+        }
+          
     }
 
     @Override
