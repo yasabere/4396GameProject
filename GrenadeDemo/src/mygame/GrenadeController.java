@@ -97,6 +97,7 @@ public class GrenadeController  extends AbstractControl implements AnalogListene
        main.getRootNode().attachChild(shape);
        
        shape.controller.getRigidBodyControl().setPhysicsLocation(grenadePos);
+       shape.setLocalTranslation(grenadePos);
          
     }
     

@@ -44,7 +44,7 @@ public class Main extends SimpleApplication {
         test.controller.getRigidBodyControl().setLinearVelocity(cam.getDirection().mult(1));
         
         Field field = new Field(this);
-        field.setLocalTranslation(0, -10f, 0);
+        field.setLocalTranslation(0, -1f, 0);
         rootNode.attachChild(field);
         
         System.out.println("test");
