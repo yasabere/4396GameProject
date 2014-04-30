@@ -49,7 +49,7 @@ public class Main extends SimpleApplication {
   private BulletAppState bullet;
   RigidBodyControl scenePhys;
   Material mat1, magenta;
-  Geometry doorOne, doorTwo;
+  Geometry doorOne, doorTwo, colShape1, colShape2, colShape3;
   Light alarm_light;
   FogFilter fog;
   public Player player;
@@ -196,6 +196,16 @@ public class Main extends SimpleApplication {
 //        doorTwo.setMaterial(magenta);
 //        doorTwo.setLocalTranslation(4.8f, 5.4f,6.2f);
 //        rootNode.attachChild(doorTwo);
+        
+        //Collision Shape #1
+          Box box = new Box(.1f, 2.2f, 1.7f);
+          colShape1 = new Geometry("ground", box);
+          colShape1.setMaterial(magenta);
+          colShape1.setLocalTranslation(4.8f, 5.4f,6.2f);
+          rootNode.attachChild(colShape1);
+        //Collision Shape #2
+        
+        //Collision Shape #3
     }
     
     protected void initCrosshairs() {
