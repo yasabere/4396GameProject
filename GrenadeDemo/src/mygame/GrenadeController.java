@@ -29,6 +29,7 @@ public class GrenadeController  extends AbstractControl implements AnalogListene
     private RigidBodyControl grenadeRB;
     private int timer = 1000;
     private boolean live = true;
+    private Vector3f dir = new Vector3f();
     
     public GrenadeController(Grenade grenade){
         this.main = grenade.main;
@@ -91,7 +92,7 @@ public class GrenadeController  extends AbstractControl implements AnalogListene
            //shape = new Shape(main);
        }
        else{
-           shape = new TerrainMold(main);
+           shape = new TerrainMold(main, dir);
        }
        
        main.getRootNode().attachChild(shape);
@@ -103,6 +104,10 @@ public class GrenadeController  extends AbstractControl implements AnalogListene
     
     public RigidBodyControl getRigidBodyControl(){
         return grenadeRB;
+    }
+    
+    public void setDir(Vector3f newDir){
+        this.dir.set(newDir.getX(), newDir.getY(), newDir.getZ());
     }
     
 }

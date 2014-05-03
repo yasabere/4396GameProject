@@ -14,6 +14,7 @@ import com.jme3.renderer.RenderManager;
 import com.jme3.renderer.ViewPort;
 import com.jme3.scene.Spatial;
 import com.jme3.scene.control.AbstractControl;
+import javax.vecmath.Vector3d;
 
 /**
  *
@@ -25,13 +26,17 @@ public class TerrainMoldController extends AbstractControl implements AnalogList
     Main main;
     RigidBodyControl shapeRB;
     float timer, max_timer;
-    float yOld;
+    float yOld, zOld, xOld;
+    Vector3f dir;
     
-    public TerrainMoldController(TerrainMold shape){
+    public TerrainMoldController(TerrainMold shape, Vector3f dir){
         this.shape = shape;
         this.main = shape.main;
-        this.max_timer = 1500;
+        this.max_timer = 500;
+        this.dir = dir;
         yOld = this.shape.getLocalTranslation().getY();
+        xOld = this.shape.getLocalTranslation().getX();
+        zOld = this.shape.getLocalTranslation().getZ();
         
         InitPhysics();
     }
@@ -49,7 +54,7 @@ public class TerrainMoldController extends AbstractControl implements AnalogList
     @Override
     protected void controlUpdate(float tpf) {
         
-        if (timer < max_timer){
+        if (timer < max_timer-1){
             timer ++;
             //shapeRB.setPhysicsLocation(Vector3f.ZERO);
             
@@ -74,10 +79,11 @@ public class TerrainMoldController extends AbstractControl implements AnalogList
             /* get shape height */
             height = this.shape.getLocalTranslation().getY();
             
+            
             /* update position */
-            y = yOld - 3 + (3 * (Math.max(timer, .001f)/max_timer));
-            x = yOld - 3 + (3 * (Math.max(timer, .001f)/max_timer));
-            z = yOld - 3 + (3 * (Math.max(timer, .001f)/max_timer));
+            y = (1 * (yOld - ( dir.getY() ) + ( dir.getY() * (Math.max(timer, .001f)/max_timer))));
+            x = (1 * (xOld - ( dir.getX() ) + ( dir.getX() * (Math.max(timer, .001f)/max_timer))));
+            z = (1 * (zOld - ( dir.getZ() ) + ( dir.getZ() * (Math.max(timer, .001f)/max_timer))));
             
             this.shape.setLocalTranslation(x, y, z);
             
@@ -86,7 +92,7 @@ public class TerrainMoldController extends AbstractControl implements AnalogList
                     
             pitchNew.lookAt(new Vector3f(x,y,z), Vector3f.ZERO);
 
-            this.shape.setLocalRotation(Quaternion.ZERO);
+            //this.shape.setLocalRotation(Quaternion.ZERO);
             this.shape.setLocalRotation(pitchNew);
             
             /* Apply the rotation to the object */

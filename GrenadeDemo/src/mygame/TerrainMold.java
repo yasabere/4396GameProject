@@ -24,15 +24,16 @@ public class TerrainMold extends Node {
     Main main;
     Geometry geo;
     Material mat1;
+    Vector3f directionVector;
     TerrainMoldController controller;
     
-    public TerrainMold(Main main){
+    public TerrainMold(Main main, Vector3f directionVector){
      this.main = main;
-    
+     this.directionVector = directionVector;
      initGeometries();
      initMaterials();
      
-     this.controller = new TerrainMoldController(this);
+     this.controller = new TerrainMoldController(this, directionVector);
      this.addControl(this.controller);
      
     }
