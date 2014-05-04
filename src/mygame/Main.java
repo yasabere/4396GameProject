@@ -46,7 +46,7 @@ public class Main extends SimpleApplication {
 
   private Spatial level_1;
   Node loadedNode;
-  private BulletAppState bullet;
+  BulletAppState bullet;
   RigidBodyControl scenePhys;
   Material mat1, magenta;
   Geometry doorOne, doorTwo, colShape1, colShape2, colShape3;
@@ -259,4 +259,5 @@ public class Main extends SimpleApplication {
             cam.setLocation(new Vector3f(25, 3, 6));
             cam.lookAt(cam.getLocation(), Vector3f.UNIT_X);
         }
+        
 }

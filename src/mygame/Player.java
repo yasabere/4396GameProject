@@ -7,6 +7,7 @@ import com.jme3.collision.CollisionResults;
 import com.jme3.font.BitmapText;
 import com.jme3.input.InputManager;
 import com.jme3.input.KeyInput;
+import com.jme3.input.MouseInput;
 import com.jme3.input.controls.ActionListener;
 import com.jme3.input.controls.AnalogListener;
 import com.jme3.input.controls.KeyTrigger;
@@ -67,6 +68,7 @@ public class Player implements ActionListener{
     inputManager.addMapping("Jump", new KeyTrigger(KeyInput.KEY_SPACE));
     inputManager.addMapping("PickUp", new KeyTrigger(KeyInput.KEY_E));
     inputManager.addMapping("Crouch", new KeyTrigger(KeyInput.KEY_C));
+    inputManager.addMapping("Action", new KeyTrigger(MouseInput.BUTTON_LEFT));
     inputManager.addListener(this, "Left");
     inputManager.addListener(this, "Right");
     inputManager.addListener(this, "Forward");
@@ -74,6 +76,7 @@ public class Player implements ActionListener{
     inputManager.addListener(this, "Jump");
     inputManager.addListener(this, "Crouch");
     inputManager.addListener(analogListener, "PickUp");
+    inputManager.addListener(analogListener, "Action");
   }
     
     public void onAction(String binding, boolean isPressed, float tpf) {
@@ -105,27 +108,33 @@ public class Player implements ActionListener{
     }
     
     private AnalogListener analogListener = new AnalogListener() {
-    public void onAnalog(String name, float intensity, float tpf) {
-        if (name.equals("PickUp")) {
-         // Reset results list.
-         CollisionResults results = new CollisionResults();
-         // Aim the ray from camera location in camera direction
-         // (assuming crosshairs in center of screen).
-         Ray ray = new Ray(pLoc, viewDir);
-         // Collect intersections between ray and all nodes in results list.
-         main.getRootNode().collideWith(ray, results);
-         // Print the results so we see what is going on
-         for (int i = 0; i < results.size(); i++) {
-           // For each “hit”, we know distance, impact point, geometry.
-           float dist = results.getCollision(i).getDistance();
-           Vector3f pt = results.getCollision(i).getContactPoint();
-           String target = results.getCollision(i).getGeometry().getName();
-           if (dist < 10)
-            System.out.println("Selection #" + i + ": " + target + " at " + pt + ", " + dist + " WU away.");
-         }
+        public void onAnalog(String name, float intensity, float tpf) {
+            if (name.equals("PickUp")) {
+                // Reset results list.
+                CollisionResults results = new CollisionResults();
+                // Aim the ray from camera location in camera direction
+                // (assuming crosshairs in center of screen).
+                Ray ray = new Ray(pLoc, viewDir);
+                // Collect intersections between ray and all nodes in results list.
+                main.getRootNode().collideWith(ray, results);
+                // Print the results so we see what is going on
+                for (int i = 0; i < results.size(); i++) {
+                    // For each “hit”, we know distance, impact point, geometry.
+                    float dist = results.getCollision(i).getDistance();
+                    Vector3f pt = results.getCollision(i).getContactPoint();
+                    String target = results.getCollision(i).getGeometry().getName();
+                    if (dist < 10)
+                        System.out.println("Selection #" + i + ": " + target + " at " + pt + ", " + dist + " WU away.");
+                }
+            }
+            
+            if (name.equals("Action")) {
+                
+                //throw grenade
+                
+            }
         }
-    }
-  };
+    };
     
     public void update(float tpf){
         Vector3f camDir = cam.getDirection().mult(0.2f);
