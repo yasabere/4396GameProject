@@ -11,6 +11,7 @@ import com.jme3.input.MouseInput;
 import com.jme3.input.controls.ActionListener;
 import com.jme3.input.controls.AnalogListener;
 import com.jme3.input.controls.KeyTrigger;
+import com.jme3.input.controls.MouseButtonTrigger;
 import com.jme3.math.Ray;
 import com.jme3.math.Vector3f;
 import com.jme3.renderer.Camera;
@@ -68,7 +69,7 @@ public class Player implements ActionListener{
     inputManager.addMapping("Jump", new KeyTrigger(KeyInput.KEY_SPACE));
     inputManager.addMapping("PickUp", new KeyTrigger(KeyInput.KEY_E));
     inputManager.addMapping("Crouch", new KeyTrigger(KeyInput.KEY_C));
-    inputManager.addMapping("Action", new KeyTrigger(MouseInput.BUTTON_LEFT));
+    inputManager.addMapping("Action", new MouseButtonTrigger(MouseInput.BUTTON_LEFT));
     inputManager.addListener(this, "Left");
     inputManager.addListener(this, "Right");
     inputManager.addListener(this, "Forward");
@@ -76,7 +77,7 @@ public class Player implements ActionListener{
     inputManager.addListener(this, "Jump");
     inputManager.addListener(this, "Crouch");
     inputManager.addListener(analogListener, "PickUp");
-    inputManager.addListener(analogListener, "Action");
+    inputManager.addListener(this, "Action");
   }
     
     public void onAction(String binding, boolean isPressed, float tpf) {
@@ -99,7 +100,24 @@ public class Player implements ActionListener{
     else if (binding.equals("Jump")) {
       if (isPressed) { pControl.jump(); }
     }
-
+    else if (binding.equals("Action")) {
+      if (!isPressed) {
+        System.out.println("dropped grenade");
+        Grenade test = new Grenade(main);
+        main.getRootNode().attachChild(test);
+        Vector3f dir  = new Vector3f();
+        
+        Vector3f playerPos = pControl.getPhysicsLocation();
+        Vector3f vDir = pControl.getViewDirection();
+        vDir.mult(5f);
+        playerPos.add(vDir);
+        //dir.setZ(30f);
+        //dir.y = 0f;
+        //dir.z = 0;
+        test.controller.getRigidBodyControl().setPhysicsLocation(playerPos);
+        //test.controller.getRigidBodyControl().setLinearVelocity(cam.getDirection().mult(1));
+      }
+    }
         
   }
     
@@ -126,12 +144,6 @@ public class Player implements ActionListener{
                     if (dist < 10)
                         System.out.println("Selection #" + i + ": " + target + " at " + pt + ", " + dist + " WU away.");
                 }
-            }
-            
-            if (name.equals("Action")) {
-                
-                //throw grenade
-                
             }
         }
     };
