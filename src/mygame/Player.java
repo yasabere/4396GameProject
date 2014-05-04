@@ -108,7 +108,7 @@ public class Player implements ActionListener{
         Vector3f dir  = new Vector3f();
         
         Vector3f playerPos = pControl.getPhysicsLocation();
-        Vector3f vDir = pControl.getViewDirection();
+        Vector3f vDir = pControl.getWalkDirection();
         vDir.mult(5f);
         playerPos.add(vDir);
         //dir.setZ(30f);

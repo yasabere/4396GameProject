@@ -32,7 +32,7 @@ public class TerrainMoldController extends AbstractControl implements AnalogList
     public TerrainMoldController(TerrainMold shape, Vector3f dir){
         this.shape = shape;
         this.main = shape.main;
-        this.max_timer = 500;
+        this.max_timer = 1500;
         this.dir = dir;
         yOld = this.shape.getLocalTranslation().getY();
         xOld = this.shape.getLocalTranslation().getX();
