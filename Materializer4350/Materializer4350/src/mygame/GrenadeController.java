@@ -43,6 +43,8 @@ public class GrenadeController  extends AbstractControl implements AnalogListene
     
     private void InitPhysics(){
         grenadeRB = new RigidBodyControl(10.0f); // Dynamic: mass > 0
+        
+       //grenadeRB.setCcdSweptSphereRadius(.5f);
         this.grenade.geo_grenade.addControl(grenadeRB);
         main.bullet.getPhysicsSpace().add(grenadeRB);
     }
@@ -91,6 +93,7 @@ public class GrenadeController  extends AbstractControl implements AnalogListene
            Shape shape = new Shape(main);
        
            main.getRootNode().attachChild(shape);
+           main.shapes.add(shape);
 
            shape.controller.getRigidBodyControl().setPhysicsLocation(grenadePos);
            shape.setLocalTranslation(grenadePos);

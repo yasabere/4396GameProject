@@ -29,15 +29,12 @@ public class ShapeController extends AbstractControl implements AnalogListener  
     
     private void InitPhysics(){
         shapeRB = new RigidBodyControl(10f); // Dynamic: mass > 0
-        
         this.shape.addControl(shapeRB);
         
         shapeRB.setCollisionGroup(3);
         //shapeRB.
         
         main.bullet.getPhysicsSpace().add(shapeRB);
-        
-        
     }
 
     @Override

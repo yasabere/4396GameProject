@@ -75,7 +75,7 @@ public class Main extends SimpleApplication{
   Geometry key1pt_1, key1pt_2, key1pt_3, key1pt_4, key2pt_1, key2pt_2, key2pt_3;
   Light alarm_light;
   App app;
-  ArrayList shapes;
+  ArrayList<Shape> shapes = new ArrayList<Shape>();
 
   public Player player;
   int currentX, currentY, oldX, oldY;
@@ -210,6 +210,12 @@ public class Main extends SimpleApplication{
 //        dlsr.setLight(sun);
 //        viewPort.addProcessor(dlsr); 
         
+    }
+        
+         protected static void clearJMonkey(Main m) {
+         m.guiNode.detachAllChildren();
+         //m.rootNode.detachAllChildren();
+         m.inputManager.clearMappings();
     }
         
        

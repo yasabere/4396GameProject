@@ -113,10 +113,18 @@ public class Game extends AbstractAppState {
         AudioNode alarmAudio = new AudioNode(main.getAssetManager(), "Sounds/alarm.ogg");
         alarmAudio.setPositional(false); 
         alarmAudio.setDirectional(false);
-        alarmAudio.setVolume(1);
+        alarmAudio.setVolume(75f);
         alarmAudio.setLooping(true);
         main.getRootNode().attachChild(alarmAudio);
         alarmAudio.play();
+        
+        AudioNode musicAudio = new AudioNode(main.getAssetManager(), "Sounds/music.ogg");
+        musicAudio.setPositional(false); 
+        musicAudio.setDirectional(false);
+        musicAudio.setVolume(.6f);
+        musicAudio.setLooping(true);
+        main.getRootNode().attachChild(musicAudio);
+        musicAudio.play();
     }
     
         
