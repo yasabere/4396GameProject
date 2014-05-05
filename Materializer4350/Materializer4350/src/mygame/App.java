@@ -45,7 +45,7 @@ public class App implements MouseListener {
     CustomMesh mesh;
     boolean meshOn = false;
     int radius = 3;
-    ArrayList verts = new ArrayList();
+    static ArrayList verts = new ArrayList();
     
     public App(Main main) {
 	this.main = main;
@@ -71,7 +71,7 @@ public class App implements MouseListener {
         panel3.setPreferredSize(new Dimension(285, 400));
         BufferedImage myPicture;
         try {
-            myPicture = ImageIO.read(new File("C:\\Documents and Settings\\Nick\\Desktop\\Gitpull\\4396GameProject\\Materializer4350\\Materializer4350\\assets\\Images\\crack.png"));
+            myPicture = ImageIO.read(new File("C:\\Users\\Matt\\Desktop\\crack.gif"));
             JLabel picLabel = new JLabel(new ImageIcon(myPicture));
             panel3.add(picLabel);
         } catch (IOException ex) {
@@ -83,7 +83,7 @@ public class App implements MouseListener {
         verts = new ArrayList();
         
         JButton send = new JButton();
-        send.setIcon(new ImageIcon("C:\\Documents and Settings\\Nick\\Desktop\\Gitpull\\4396GameProject\\Materializer4350\\Materializer4350\\assets\\Images\\send.gif"));
+        send.setIcon(new ImageIcon("C:\\Users\\Matt\\Desktop\\send.gif"));
         send.addActionListener(new ActionListener() {
  
             public void actionPerformed(ActionEvent e)
@@ -93,7 +93,7 @@ public class App implements MouseListener {
             }
         });
         JButton delete = new JButton();
-        delete.setIcon(new ImageIcon("C:\\Documents and Settings\\Nick\\Desktop\\Gitpull\\4396GameProject\\Materializer4350\\Materializer4350\\assets\\Images\\delete.gif"));
+        delete.setIcon(new ImageIcon("C:\\Users\\Matt\\Desktop\\delete.gif"));
         delete.addActionListener(new ActionListener() {
  
             public void actionPerformed(ActionEvent e)
@@ -104,7 +104,7 @@ public class App implements MouseListener {
             }
         });
         JButton backspace = new JButton();
-        backspace.setIcon(new ImageIcon("C:\\Documents and Settings\\Nick\\Desktop\\Gitpull\\4396GameProject\\Materializer4350\\Materializer4350\\assets\\Images\\backspace.gif"));
+        backspace.setIcon(new ImageIcon("C:\\Users\\Matt\\Desktop\\backspace.gif"));
         backspace.addActionListener(new ActionListener() {
  
             public void actionPerformed(ActionEvent e)
@@ -136,7 +136,7 @@ public class App implements MouseListener {
         frame.setLocationRelativeTo(null);
     }
     
-     private void initMesh() {
+     public void initMesh() {
 	
         Vector3f[] vertices = new Vector3f[verts.size()];
         
@@ -147,16 +147,15 @@ public class App implements MouseListener {
         mesh = new CustomMesh(vertices, .5f, true);
         
         Geometry geo = new Geometry("mesh", mesh); 
-        //geo.scale(.5f);
+        geo.scale(.5f);
         geo.setLocalTranslation(7, 3, 3);
 	Material mat = new Material(main.getAssetManager(), "Common/MatDefs/Misc/Unshaded.j3md");
 	mat.setBoolean("VertexColor", true);
-//        mat.getAdditionalRenderState().setWireframe(true); 
 
         geo.setMaterial(mat);
 	geo.setShadowMode(RenderQueue.ShadowMode.Cast);
                 
-        geo.addControl(new RigidBodyControl(2f));
+        geo.addControl(new RigidBodyControl(20f));
         geo.getControl(RigidBodyControl.class).setRestitution(1);
         main.getRootNode().attachChild(geo);
         main.bullet.getPhysicsSpace().add(geo);
