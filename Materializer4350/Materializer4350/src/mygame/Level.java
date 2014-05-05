@@ -19,7 +19,7 @@ import com.jme3.effect.ParticleMesh;
 import com.jme3.audio.AudioNode;
 import com.jme3.bullet.collision.shapes.BoxCollisionShape;
 import com.jme3.bullet.control.GhostControl;
-
+import java.util.ArrayList;
 import com.jme3.math.ColorRGBA;
 import com.jme3.math.FastMath;
 import com.jme3.scene.Geometry;
@@ -75,7 +75,7 @@ public class Level extends Node {
             
             //level_1 Collision Shape #2
             GhostControl ghost = new GhostControl(new BoxCollisionShape(new Vector3f(.7f,.1f,1.4f)));  // a box-shaped ghost
-            Node node = new Node("a ghost-controlled thing");
+            Node node = new Node("node1");
             node.addControl(ghost);
             node.setLocalTranslation(6.6f, 3.95f,7.8f);
             main.getRootNode().attachChild(node);
@@ -83,7 +83,7 @@ public class Level extends Node {
             
             //level_1 Collision Shape #2
             GhostControl ghost2 = new GhostControl(new BoxCollisionShape(new Vector3f(.7f,.1f,1.4f)));  // a box-shaped ghost
-            Node node2 = new Node("a ghost-controlled thing");
+            Node node2 = new Node("node2");
             node2.addControl(ghost2);
             node2.rotate(0f, 0f, 90.0f * FastMath.DEG_TO_RAD);
             node2.setLocalTranslation(5.8f, 6.6f,4.6f);
@@ -92,7 +92,7 @@ public class Level extends Node {
             
             //level_1 Collision Shape #3
             GhostControl ghost3 = new GhostControl(new BoxCollisionShape(new Vector3f(.7f,.1f,1.4f)));  // a box-shaped ghost
-            Node node3 = new Node("a ghost-controlled thing");
+            Node node3 = new Node("node3");
             node3.addControl(ghost3);
             node3.setLocalTranslation(12.45f, -.05f, 6.1f);
             main.getRootNode().attachChild(node3);
@@ -117,9 +117,9 @@ public class Level extends Node {
             alarm_light.setPosition(new Vector3f(1, 8, 6.4f));
             level.addLight(alarm_light);
             
-            //level_1 Collision Shape #3
+            //level_2 Collision Shape
             GhostControl ghost4 = new GhostControl(new BoxCollisionShape(new Vector3f(6.5f, .1f, 2.9f)));  // a box-shaped ghost
-            Node node4 = new Node("a ghost-controlled thing");
+            Node node4 = new Node("node4");
             node4.addControl(ghost4);
             node4.setLocalTranslation(14f, 12.83f, 6f);
             main.getRootNode().attachChild(node4);
@@ -180,7 +180,7 @@ public class Level extends Node {
             
             //level_3 Collision Shape 
             GhostControl ghost5 = new GhostControl(new BoxCollisionShape(new Vector3f(.9f, .1f, .5f)));  // a box-shaped ghost
-            Node node5 = new Node("a ghost-controlled thing");
+            Node node5 = new Node("node5");
             node5.addControl(ghost5);
             node5.setLocalTranslation(23.3f, -.05f, 2.65f);
             main.getRootNode().attachChild(node5);
@@ -237,5 +237,24 @@ public class Level extends Node {
         
         if (levelNum == 2)
             root.detachChildNamed("fire");
+    }
+    
+    public ArrayList<Node> getGhosts() {
+        ArrayList<Node> ghosts = new ArrayList<Node>();
+        
+        if (levelNum == 1) {
+            ghosts.add((Node) main.getRootNode().getChild("node1"));
+            ghosts.add((Node) main.getRootNode().getChild("node2"));
+            ghosts.add((Node) main.getRootNode().getChild("node3"));
+        }
+        
+        else if (levelNum == 2) {
+            ghosts.add((Node) main.getRootNode().getChild("node4"));
+        }
+        else {
+            ghosts.add((Node) main.getRootNode().getChild("node5"));
+        }
+        
+        return ghosts;
     }
 }
