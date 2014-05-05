@@ -20,7 +20,7 @@ import com.jme3.math.Vector3f;
 public class Grenade extends Node {
     
     Main main;
-    static Geometry geo_grenade;
+    public static Geometry geo_grenade;
     GrenadeController controller;
     Game game;
     
@@ -48,8 +48,6 @@ public class Grenade extends Node {
         geo_grenade.setMaterial(mat);
     }
 
-    void controlUpdate(float tpf) {
-
-    }
+   
     
 }

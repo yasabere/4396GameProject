@@ -252,7 +252,7 @@ public class Main extends SimpleApplication {
     
     public void updateClock(float tpf){
         if (secs >= 1){
-            secs-= 0.03;
+            secs-= 0.008;
             if (secs >= 10){
                 timeStr = ((int)mins + ":" + (int)secs);
             }

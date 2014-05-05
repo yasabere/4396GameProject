@@ -71,7 +71,7 @@ public class App implements MouseListener {
         panel3.setPreferredSize(new Dimension(285, 400));
         BufferedImage myPicture;
         try {
-            myPicture = ImageIO.read(new File("C:\\Users\\Matt\\Desktop\\crack.gif"));
+            myPicture = ImageIO.read(new File("C:\\Users\\Matt\\Desktop\\crack.png"));
             JLabel picLabel = new JLabel(new ImageIcon(myPicture));
             panel3.add(picLabel);
         } catch (IOException ex) {
