@@ -212,6 +212,12 @@ public class Main extends SimpleApplication{
         
     }
         
+         protected static void clearJMonkey(Main m) {
+         m.guiNode.detachAllChildren();
+         //m.rootNode.detachAllChildren();
+         m.inputManager.clearMappings();
+    }
+        
        
         
         public void initMaterial() {
