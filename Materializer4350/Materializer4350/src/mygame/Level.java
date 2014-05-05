@@ -40,7 +40,9 @@ public class Level extends Node {
     Node node, node2, node3, node4, node5;
     int sceneCollisionGroup = 1;
     int playerCollisionGroup = 2;
-
+    PointLight alarm_light;
+    boolean light;
+    
     public Level(int lvlNum, Main main) {
 
         
@@ -67,11 +69,12 @@ public class Level extends Node {
 
             
             //Alarm Light for level_1
-            PointLight alarm_light = new PointLight();
+            alarm_light = new PointLight();
             alarm_light.setColor(ColorRGBA.Red);
             alarm_light.setRadius(30f);
             alarm_light.setPosition(new Vector3f(1, 11.5f, 6));
             level.addLight(alarm_light);
+            light = true;
             
             //level_1 Collision Shape #2
             GhostControl ghost = new GhostControl(new BoxCollisionShape(new Vector3f(.7f,.1f,1.4f)));  // a box-shaped ghost
@@ -111,11 +114,12 @@ public class Level extends Node {
             level.scale(2);
 
             //Alarm Light for level_2
-            PointLight alarm_light = new PointLight();
+            alarm_light = new PointLight();
             alarm_light.setColor(ColorRGBA.Red);
             alarm_light.setRadius(30f);
             alarm_light.setPosition(new Vector3f(1, 8, 6.4f));
             level.addLight(alarm_light);
+            light = true;
             
             //level_2 Collision Shape
             GhostControl ghost4 = new GhostControl(new BoxCollisionShape(new Vector3f(6.5f, .1f, 2.9f)));  // a box-shaped ghost
@@ -165,11 +169,12 @@ public class Level extends Node {
 
 
             //Alarm Light for level_3 ***POSITION
-            PointLight alarm_light = new PointLight();
+            alarm_light = new PointLight();
             alarm_light.setColor(ColorRGBA.Red);
             alarm_light.setRadius(30f);
             alarm_light.setPosition(new Vector3f(1, 8, 4f));
             level.addLight(alarm_light);
+            light = true;
 
             //Second Alarm Light for level_3  ***POSITION
             PointLight alarm_light2 = new PointLight();
@@ -256,5 +261,16 @@ public class Level extends Node {
         }
         
         return ghosts;
+    }
+    
+    public void updateLight(float tpf){
+        if ((main.secs % 1) > 0.5 && light){
+            level.removeLight(alarm_light);
+            light = false;
+        }
+        else if ((main.secs % 1) < 0.5 && !light){
+            level.addLight(alarm_light);
+            light = true;
+        }
     }
 }
