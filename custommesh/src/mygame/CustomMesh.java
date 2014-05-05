@@ -31,6 +31,7 @@ public class CustomMesh extends Mesh {
     private boolean vertColor;
     private float[] colorArray;
     private float[] normals;
+    public Vector3f topFrontPoint, bottomFrontPoint;
     
     public CustomMesh(Vector3f[] verts, float depth, boolean vertColor) {
         	
@@ -44,6 +45,7 @@ public class CustomMesh extends Mesh {
 	this.vertColor = vertColor;
         
 	makeCCW();
+	getTopBottomVerts();
         generateBackSideVerts();
         generateFrontTriangles();
 	generateBackTriangles();
@@ -93,6 +95,22 @@ public class CustomMesh extends Mesh {
 	    frontVerts[length - i - 1] = temp;
 	}
 	    
+    }
+    
+    
+    //needed to create a ray to find orientation of mesh. topfront vertex and bottom front vertex
+    private void getTopBottomVerts() {
+	
+	topFrontPoint = frontVerts[0];
+	bottomFrontPoint = frontVerts[0];
+	
+	for (int i = 1; i < length; i++) {
+	    if (frontVerts[i].y < bottomFrontPoint.y)
+		bottomFrontPoint = frontVerts[i];
+	    if (frontVerts[i].y > topFrontPoint.y)
+		topFrontPoint = frontVerts[i];
+	}
+	
     }
     
     //generates vertices for the other side of the mesh (frontSideVerts + a z-depth)
