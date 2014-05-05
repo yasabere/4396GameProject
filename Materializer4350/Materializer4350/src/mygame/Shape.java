@@ -54,12 +54,12 @@ public class Shape extends Node {
     private void initGeometries(){
         
         Vector3f[] vertices = new Vector3f[main.app.verts.size()];
-        
         for(int i = 0; i < main.app.verts.size(); i++)
-            vertices[i] = (Vector3f)main.app.verts.get(i);
-        
+        vertices[i] = (Vector3f)main.app.verts.get(i);
         CustomMesh box = new CustomMesh(vertices, .5f, true);
         geo = new Geometry("shape", box);
+        geo.scale(.5f);
+        geo.rotate(90,0,0);
         
         
         
