@@ -37,9 +37,9 @@ public class StartScreen extends AbstractAppState implements ActionListener {
     public void initialize(AppStateManager stateManager, Application app) {
 	main = (Main) app;
         asm = stateManager;
-	//Game game = new Game();
-        //stateManager.attach(game);
-        
+	Game game = new Game();
+        stateManager.attach(game);
+        /*
         Picture pic = new Picture("HUD Picture");
         pic.setImage(main.getAssetManager(), "Interface/resources/background.png", true);
         pic.setWidth(1024);
@@ -49,7 +49,7 @@ public class StartScreen extends AbstractAppState implements ActionListener {
         //init input
         InputManager inputManager = main.getInputManager();
         inputManager.addMapping("start", new KeyTrigger(KeyInput.KEY_B));
-        inputManager.addListener(this, "start"); 
+        inputManager.addListener(this, "start"); */
 	
     }
     
