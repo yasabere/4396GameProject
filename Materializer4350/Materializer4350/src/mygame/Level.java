@@ -227,6 +227,9 @@ public class Level extends Node {
 
     public void removeFromScene(BulletAppState bas, Node root) {
 
+        
+        for (Shape shape : main.shapes)
+            main.getRootNode().detachChild(shape);
         main.shapes.clear();
         
         root.detachChild(level);
