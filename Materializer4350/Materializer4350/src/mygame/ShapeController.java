@@ -32,7 +32,7 @@ public class ShapeController extends AbstractControl implements AnalogListener  
         
         this.shape.addControl(shapeRB);
         
-        shapeRB.setCollisionGroup(1);
+        shapeRB.setCollisionGroup(3);
         //shapeRB.
         
         main.bullet.getPhysicsSpace().add(shapeRB);

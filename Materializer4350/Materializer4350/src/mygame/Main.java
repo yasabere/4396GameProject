@@ -74,6 +74,7 @@ public class Main extends SimpleApplication{
   Geometry doorOne, doorTwo, colShape1, colShape2, colShape3;
   Geometry key1pt_1, key1pt_2, key1pt_3, key1pt_4, key2pt_1, key2pt_2, key2pt_3;
   Light alarm_light;
+  App app;
 
   public Player player;
   int currentX, currentY, oldX, oldY;
