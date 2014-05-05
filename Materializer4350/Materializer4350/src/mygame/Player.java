@@ -101,7 +101,7 @@ public class Player implements ActionListener{
       if (isPressed) { pControl.jump(); }
     }
     else if (binding.equals("Grenade")) {
-      if (isPressed) { main.initGui(); }
+      if (isPressed) { initGui(); }
     }else if (binding.equals("Action")) {
       if (!isPressed) {
         System.out.println("dropped grenade");
@@ -181,6 +181,10 @@ public class Player implements ActionListener{
         cam.setLocation(pLoc);
         if (pLoc.getY() < -1)
             resetPlayer();
+    }
+    
+    public void initGui() {
+	App app = new App(main);
     }
     
 }
