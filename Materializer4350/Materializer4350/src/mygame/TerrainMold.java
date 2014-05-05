@@ -14,6 +14,7 @@ import com.jme3.scene.Node;
 import com.jme3.scene.shape.Box;
 import com.jme3.scene.shape.Cylinder;
 import com.jme3.scene.shape.Sphere;
+import static mygame.Shape.geo;
 
 /**
  *
@@ -46,18 +47,29 @@ public class TerrainMold extends Node {
         //mat1.setFloat("Shininess", 4f); // shininess from 1-128
         
         mat1.setBoolean("VertexColor", true);
-
-        geo.setMaterial(mat1);
     }
     
     private void initGeometries(){
-        Vector3f[] vertices = new Vector3f[main.app.verts.size()];
+        if(main.app.verts.size() > 0){
         
-        for(int i = 0; i < main.app.verts.size(); i++)
-            vertices[i] = (Vector3f)main.app.verts.get(i);
+            Vector3f[] vertices = new Vector3f[main.app.verts.size()];
+
+            for(int i = 0; i < main.app.verts.size(); i++)
+                vertices[i] = (Vector3f)main.app.verts.get(i);
+
+            CustomMesh box = new CustomMesh(vertices, 1f, true);
+            geo = new Geometry("shape", box);
+            geo.scale(.5f);
+            geo.rotate(90,0,0);
+
+            this.attachChild(geo);
         
-        CustomMesh box = new CustomMesh(vertices, 1f, true);
-        geo = new Geometry("shape", box);
+        }
+        else{
+            Sphere box = new Sphere(16, 16, 1);
+            geo = new Geometry("shape", box);
+            geo.setMaterial(mat1);
+        }
     }
     
 }
