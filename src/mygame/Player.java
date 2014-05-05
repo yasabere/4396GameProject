@@ -109,12 +109,14 @@ public class Player implements ActionListener{
         
         Vector3f playerPos = pControl.getPhysicsLocation();
         Vector3f vDir = pControl.getWalkDirection();
-        vDir.mult(5f);
+        vDir.mult(.5f);
         playerPos.add(vDir);
         //dir.setZ(30f);
         //dir.y = 0f;
         //dir.z = 0;
         test.controller.getRigidBodyControl().setPhysicsLocation(playerPos);
+        test.controller.getRigidBodyControl().setLinearVelocity(Vector3f.ZERO);
+        //test.
         //test.controller.getRigidBodyControl().setLinearVelocity(cam.getDirection().mult(1));
       }
     }

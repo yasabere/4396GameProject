@@ -98,7 +98,7 @@ public class TerrainMoldController extends AbstractControl implements AnalogList
             /* Apply the rotation to the object */
             //this.shape.setLocalRotation(pitchOld.mult(pitchNew));
             
-            System.out.println(timer);
+            //System.out.println(timer);
             
             /* Update the model. Now it's vertical. */
             this.shape.updateModelBound();
