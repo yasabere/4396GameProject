@@ -32,6 +32,7 @@ public class CustomMesh extends Mesh {
     private float[] colorArray;
     private float[] normals;
     public Vector3f topFrontPoint, bottomFrontPoint;
+    public Vector3f center;
 
     public CustomMesh(Vector3f[] verts, float depth, boolean vertColor) {
         	
@@ -45,6 +46,8 @@ public class CustomMesh extends Mesh {
 	this.vertColor = vertColor;
         
 	makeCCW();
+	getCenterAtOrigin();
+	getTopBottomVerts();
         generateBackSideVerts();
         generateFrontTriangles();
 	generateBackTriangles();
@@ -110,6 +113,30 @@ public class CustomMesh extends Mesh {
 		topFrontPoint = frontVerts[i];
 	}
 
+    }
+    
+    private void getCenterAtOrigin() {
+
+	float x = 0;
+	float y = 0;
+	
+	for (int i = 0; i < length; i++) {
+	    x += frontVerts[i].x;
+	    y += frontVerts[i].y;
+	}
+	
+	x /= length;
+	y /= length;
+	float z = depth / 2f;
+	
+	Vector3f center = new Vector3f(x, y, z);
+	
+	for (int i = 0; i < length; i++) {
+	    frontVerts[i].y = frontVerts[i].y - center.y;
+	    frontVerts[i].x = frontVerts[i].x - center.x;
+	    frontVerts[i].z = frontVerts[i].z - center.z;
+	}
+	
     }
     
     
@@ -369,6 +396,7 @@ public class CustomMesh extends Mesh {
 	if(vertColor)
 	    setBuffer(Type.Color, 4, colorArray);
 	updateBound();
+	
     }
     
 }
