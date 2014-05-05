@@ -38,11 +38,11 @@ public class Player implements ActionListener {
         inputManager = main.getInputManager();
 
         pNode = new Node("Player Node");
-        pShape = new CapsuleCollisionShape(.8f, 1.8f);
+        pShape = new CapsuleCollisionShape(1.3f, 1.8f);
         pControl = new CharacterControl(pShape, .1f);
         pControl.setPhysicsLocation(new Vector3f(0f, 5f, 0f));
         pControl.setGravity(10f);
-        pControl.setJumpSpeed(10f);
+        pControl.setJumpSpeed(7f);
         pNode.addControl(pControl);
         main.getRootNode().attachChild(pNode);
         bullet.getPhysicsSpace().add(pControl);

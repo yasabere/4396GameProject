@@ -48,22 +48,32 @@ public class Shape extends Node {
         
         mat1.setBoolean("VertexColor", true);
 
-        geo.setMaterial(mat1);
+        
     }
     
     private void initGeometries(){
         
-        Vector3f[] vertices = new Vector3f[main.app.verts.size()];
-        for(int i = 0; i < main.app.verts.size(); i++)
-        vertices[i] = (Vector3f)main.app.verts.get(i);
-        CustomMesh box = new CustomMesh(vertices, .5f, true);
-        geo = new Geometry("shape", box);
-        geo.scale(.5f);
-        geo.rotate(90,0,0);
+        if(main.app.verts.size() > 0){
         
+            Vector3f[] vertices = new Vector3f[main.app.verts.size()];
+
+            for(int i = 0; i < main.app.verts.size(); i++)
+                vertices[i] = (Vector3f)main.app.verts.get(i);
+
+            CustomMesh box = new CustomMesh(vertices, .5f, true);
+            geo = new Geometry("shape", box);
+            geo.scale(.5f);
+            geo.rotate(90,0,0);
+
+            this.attachChild(geo);
         
+        }
+        else{
+            Sphere box = new Sphere(16, 16, 1);
+            geo = new Geometry("shape", box);
+            geo.setMaterial(mat1);
+        }
         
-        this.attachChild(geo);
     }
     
 }

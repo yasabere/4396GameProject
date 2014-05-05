@@ -14,6 +14,7 @@ import com.jme3.scene.Node;
 import com.jme3.scene.shape.Box;
 import com.jme3.scene.shape.Cylinder;
 import com.jme3.scene.shape.Sphere;
+import static mygame.Shape.geo;
 
 /**
  *
@@ -22,10 +23,10 @@ import com.jme3.scene.shape.Sphere;
 public class TerrainMold extends Node {
     
     Main main;
-    Geometry geo;
     Material mat1;
     Vector3f directionVector;
     TerrainMoldController controller;
+    static Geometry geo;
     
     public TerrainMold(Main main, Vector3f directionVector){
      this.main = main;
@@ -41,16 +42,34 @@ public class TerrainMold extends Node {
     private void initMaterials() {
         mat1 = new Material(main.getAssetManager(), "Common/MatDefs/Misc/Unshaded.j3md");
 
-        mat1.setColor("Color", ColorRGBA.Blue);
-        //mat1.setFloat("Shininess", 4f); // shininess from 1-128
 
-        geo.setMaterial(mat1);
+       // mat1.setColor("Color", ColorRGBA.Blue);
+        //mat1.setFloat("Shininess", 4f); // shininess from 1-128
+        
+        mat1.setBoolean("VertexColor", true);
     }
     
     private void initGeometries(){
-        Box box = new Box(1f, 1f, 1f);
-        geo = new Geometry("shape", box);
-        this.attachChild(geo);
+        if(main.app.verts.size() > 0){
+        
+            Vector3f[] vertices = new Vector3f[main.app.verts.size()];
+
+            for(int i = 0; i < main.app.verts.size(); i++)
+                vertices[i] = (Vector3f)main.app.verts.get(i);
+
+            CustomMesh box = new CustomMesh(vertices, 1f, true);
+            geo = new Geometry("shape", box);
+            geo.scale(.5f);
+            geo.rotate(90,0,0);
+
+            this.attachChild(geo);
+        
+        }
+        else{
+            Sphere box = new Sphere(16, 16, 1);
+            geo = new Geometry("shape", box);
+            geo.setMaterial(mat1);
+        }
     }
     
 }
