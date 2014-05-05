@@ -75,7 +75,7 @@ public class Main extends SimpleApplication{
   Geometry key1pt_1, key1pt_2, key1pt_3, key1pt_4, key2pt_1, key2pt_2, key2pt_3;
   Light alarm_light;
   App app;
-  ArrayList shapes;
+  ArrayList shapes = new ArrayList();
 
   public Player player;
   int currentX, currentY, oldX, oldY;
