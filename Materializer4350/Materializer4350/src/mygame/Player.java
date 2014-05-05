@@ -125,16 +125,17 @@ public class Player implements ActionListener {
         } else if (binding.equals("Action")) {
             if (!isPressed) {
                 System.out.println("dropped grenade");
-                Grenade test = new Grenade(main);
-                main.getRootNode().attachChild(test);
                 Vector3f dir = new Vector3f();
 
                 Vector3f playerPos = pControl.getPhysicsLocation();
                 Vector3f vDir = pControl.getViewDirection();
-                pControl.setCollisionGroup(2);
+                
+                Grenade test = new Grenade(main);
+                main.getRootNode().attachChild(test);
+                
                 vDir.mult(15f);
-                playerPos.add(vDir);
-                playerPos = playerPos.add(new Vector3f(0f, 5f, 0f));
+                playerPos = playerPos.add(vDir);
+               // playerPos = playerPos.add(new Vector3f(0f, 5f, 0f));
                 //dir.setZ(30f);
                 //dir.y = 0f;
                 //dir.z = 0;

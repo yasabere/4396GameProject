@@ -27,7 +27,7 @@ public class GrenadeController  extends AbstractControl implements AnalogListene
     private Main main;
     private Grenade grenade;
     private RigidBodyControl grenadeRB;
-    private int timer = 1000;
+    private int timer = 50;
     private boolean live = true;
     private Vector3f dir = new Vector3f();
     
@@ -89,12 +89,14 @@ public class GrenadeController  extends AbstractControl implements AnalogListene
        
        if (true){
            Shape shape = new Shape(main);
-       
+           shape.rotate(90 * FastMath.DEG_TO_RAD, 0, 0);
+           
            main.getRootNode().attachChild(shape);
            main.shapes.add(shape);
 
            shape.controller.getRigidBodyControl().setPhysicsLocation(grenadePos);
            shape.setLocalTranslation(grenadePos);
+           shape.setLocalTranslation(new Vector3f(0, 1, 0));
        }
        else{
            TerrainMold shape = new TerrainMold(main, dir);

@@ -43,7 +43,7 @@ public class Shape extends Node {
         mat1 = new Material(main.getAssetManager(), "Common/MatDefs/Misc/Unshaded.j3md");
 
 
-        mat1.setColor("Color", ColorRGBA.Blue);
+       // mat1.setColor("Color", ColorRGBA.Blue);
         //mat1.setFloat("Shininess", 4f); // shininess from 1-128
         
         mat1.setBoolean("VertexColor", true);
@@ -60,7 +60,6 @@ public class Shape extends Node {
         
         CustomMesh box = new CustomMesh(vertices, .5f, true);
         geo = new Geometry("shape", box);
-        
         
         
         

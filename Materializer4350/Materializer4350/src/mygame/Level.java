@@ -227,6 +227,8 @@ public class Level extends Node {
 
     public void removeFromScene(BulletAppState bas, Node root) {
 
+        main.shapes.clear();
+        
         root.detachChild(level);
         bas.getPhysicsSpace().remove(scenePhys);
         
