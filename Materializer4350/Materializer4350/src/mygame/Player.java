@@ -143,7 +143,7 @@ public class Player implements ActionListener {
                 //test.controller.getRigidBodyControl().removeCollideWithGroup(2);
                 //pControl.removeCollideWithGroup(1);
                 //test.
-                test.controller.getRigidBodyControl().setLinearVelocity(cam.getDirection().mult(15));
+                test.controller.getRigidBodyControl().setLinearVelocity(cam.getDirection().mult(5));
             }
         }
 
