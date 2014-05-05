@@ -88,15 +88,15 @@ public class Main extends SimpleApplication{
     
     public static void main(String[] args) {
 
-       
        Main app = new Main();
        AppSettings start = new AppSettings(false);
        start.setSettingsDialogImage("Interface/resources/background.png");
        app.setSettings(start);
        app.start();
+    }
        
         
-    }
+    
 
     @Override
     public void simpleInitApp() {
