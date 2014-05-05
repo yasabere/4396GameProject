@@ -22,7 +22,7 @@ import com.jme3.scene.shape.Sphere;
 public class Shape extends Node {
     
     Main main;
-    Geometry geo;
+    static Geometry geo;
     Material mat1;
     ShapeController controller;
     

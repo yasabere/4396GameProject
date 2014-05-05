@@ -19,8 +19,9 @@ import com.jme3.scene.shape.Sphere;
 public class Grenade extends Node {
     
     Main main;
-    Geometry geo_grenade;
+    static Geometry geo_grenade;
     GrenadeController controller;
+    Game game;
     
     public Grenade(Main main){
         
@@ -47,17 +48,7 @@ public class Grenade extends Node {
     }
 
     void controlUpdate(float tpf) {
-//        if (geo_grenade.collideWith(Level.node, true)){
-//            main.initGui();
-//            main.geo.setLocalTranslation();
-//        }
-//        else if(Grenade.geo_grenade.collideWith(node2, true)){
-//        
-//            
-//        }else if(Grenade.geo_grenade.collideWith(node3, true)){
-//            
-//        }
-   
+
     }
     
 }

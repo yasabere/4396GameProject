@@ -81,8 +81,8 @@ public class Main extends SimpleApplication{
 
   public Player player;
   int currentX, currentY, oldX, oldY;
-    Geometry geomBox, geo;
-    Vector3f[] vertices;
+  Geometry geomBox, geo;
+  Vector3f[] vertices;
     
 
     

@@ -60,9 +60,7 @@ public class GrenadeController  extends AbstractControl implements AnalogListene
                 //this.grenade = null;
                 //this = null;
                 
-                Material mat = new Material(main.getAssetManager(), "Common/MatDefs/Misc/Unshaded.j3md");
-                mat.setColor("Color", ColorRGBA.Red);
-                grenade.setMaterial(mat);
+                main.getRootNode().detachChild(grenade);
                 
                 makeShape();
                 

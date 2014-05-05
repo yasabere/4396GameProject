@@ -65,6 +65,7 @@ public class Level extends Node {
             level = asm.loadModel("Scenes/level_1.j3o");
             level.scale(2);
 
+            
             //Alarm Light for level_1
             PointLight alarm_light = new PointLight();
             alarm_light.setColor(ColorRGBA.Red);
@@ -96,7 +97,12 @@ public class Level extends Node {
             node3.setLocalTranslation(12.45f, -.05f, 6.1f);
             main.getRootNode().attachChild(node3);
             main.bullet.getPhysicsSpace().add(ghost3);
+            
 
+//            if (Grenade.geo_grenade.collideWith(node, true)){
+//                Shape.geo.setLocalTranslation(12.45f, -.05f, 6.1f);
+//            }
+            
         } else if (lvl == 2) {
 
             main.getRootNode().detachChildNamed("mesh");
@@ -149,6 +155,7 @@ public class Level extends Node {
             main.getRootNode().attachChild(fireAudio);
             fireAudio.play();
 
+            
         } else {
             main.getRootNode().detachChildNamed("mesh");
 
