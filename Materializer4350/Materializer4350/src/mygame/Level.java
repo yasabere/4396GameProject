@@ -49,6 +49,7 @@ public class Level extends Node {
         this.main = main;
         asm = main.getAssetManager();
         levelNum = lvlNum;
+        this.main.initClock();
 
         if (lvlNum == 1) {
             loadLevel(1);
