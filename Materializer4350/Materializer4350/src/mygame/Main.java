@@ -57,6 +57,8 @@ import javax.swing.JComponent;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import com.jme3.system.AppSettings;
+
 
 /**
  * test
@@ -81,12 +83,16 @@ public class Main extends SimpleApplication{
   int currentX, currentY, oldX, oldY;
     Geometry geomBox, geo;
     Vector3f[] vertices;
+    
 
     
     public static void main(String[] args) {
 
        
        Main app = new Main();
+       AppSettings start = new AppSettings(false);
+       start.setSettingsDialogImage("Interface/resources/background.png");
+       app.setSettings(start);
        app.start();
        
         
