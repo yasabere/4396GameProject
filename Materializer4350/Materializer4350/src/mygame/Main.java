@@ -82,8 +82,8 @@ public class Main extends SimpleApplication {
     Geometry geomBox, geo;
     Vector3f[] vertices;
     String timeStr;
-    float secs = 59;
-    float mins = 1;
+    float secs;
+    float mins;
     BitmapText hudText;
     
     public static void main(String[] args) {
@@ -237,8 +237,13 @@ public class Main extends SimpleApplication {
     }
 
     public void initClock() {
+        if (!(hudText == null)){
+            guiNode.detachChild(hudText);
+        }
+        mins = 1;
+        secs = 60;
         hudText = new BitmapText(guiFont, false);
-        hudText.setSize(guiFont.getCharSet().getRenderedSize());      // font size
+        hudText.setSize(guiFont.getCharSet().getRenderedSize() * 2);      // font size
         hudText.setColor(ColorRGBA.Red);                             // font color
         hudText.setText(mins + ":" + secs);             // the text
         hudText.setLocalTranslation((settings.getWidth() / 2) - 50, settings.getHeight(), 0); // position
@@ -262,6 +267,8 @@ public class Main extends SimpleApplication {
         }
         else if (secs <=1 && mins == 0){
             timeStr = "Time's up";
+            game.lvl.removeFromScene(bullet, rootNode);
+            game.lvl.addToScene(bullet, rootNode);
         }
         
         hudText.setText(timeStr);

@@ -50,7 +50,7 @@ import com.jme3.post.FilterPostProcessor;
  */
 public class Game extends AbstractAppState {
 
-    private Level lvl;
+    Level lvl;
     Node loadedNode;
     private BulletAppState bullet;
     RigidBodyControl scenePhys;
@@ -87,8 +87,10 @@ public class Game extends AbstractAppState {
 
             if (lvl.levelNum == 1) {
                 lvl = new Level(2, main);
+                main.initClock();
             } else {
                 lvl = new Level(3, main);
+                main.initClock();
             }
 
             lvl.addToScene(bullet, main.getRootNode());
