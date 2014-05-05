@@ -56,7 +56,7 @@ public class TerrainMold extends Node {
         for(int i = 0; i < main.app.verts.size(); i++)
             vertices[i] = (Vector3f)main.app.verts.get(i);
         
-        CustomMesh box = new CustomMesh(vertices, .5f, true);
+        CustomMesh box = new CustomMesh(vertices, 1f, true);
         geo = new Geometry("shape", box);
     }
     
