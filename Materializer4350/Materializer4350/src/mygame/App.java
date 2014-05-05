@@ -88,7 +88,7 @@ public class App implements MouseListener {
  
             public void actionPerformed(ActionEvent e)
             {
-                initMesh();
+                //initMesh();
                 frame.dispose();
             }
         });

@@ -86,20 +86,19 @@ public class GrenadeController  extends AbstractControl implements AnalogListene
         
        Vector3f grenadePos = grenadeRB.getPhysicsLocation();  
         
-       TerrainMold shape;
        
-       if (false){
-           //shape = new Shape(main);
+       if (true){
+           Shape shape = new Shape(main);
+       
+           main.getRootNode().attachChild(shape);
+
+           shape.controller.getRigidBodyControl().setPhysicsLocation(grenadePos);
+           shape.setLocalTranslation(grenadePos);
        }
        else{
-           shape = new TerrainMold(main, dir);
+           TerrainMold shape = new TerrainMold(main, dir);
        }
        
-       main.getRootNode().attachChild(shape);
-       
-       shape.controller.getRigidBodyControl().setPhysicsLocation(grenadePos);
-       shape.setLocalTranslation(grenadePos);
-         
     }
     
     public RigidBodyControl getRigidBodyControl(){

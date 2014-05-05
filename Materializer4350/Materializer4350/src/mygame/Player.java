@@ -184,7 +184,7 @@ public class Player implements ActionListener{
     }
     
     public void initGui() {
-	App app = new App(main);
+	main.app = new App(main);
     }
     
 }
