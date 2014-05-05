@@ -36,8 +36,6 @@ public class ShapeController extends AbstractControl implements AnalogListener  
         //shapeRB.
         
         main.bullet.getPhysicsSpace().add(shapeRB);
-        
-        
     }
 
     @Override
