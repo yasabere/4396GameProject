@@ -4,6 +4,7 @@ import com.jme3.app.SimpleApplication;
 import com.jme3.asset.plugins.FileLocator;
 import com.jme3.audio.AudioNode;
 import com.jme3.bullet.BulletAppState;
+import com.jme3.bullet.collision.shapes.CapsuleCollisionShape;
 import com.jme3.bullet.collision.shapes.CollisionShape;
 import com.jme3.bullet.control.RigidBodyControl;
 import com.jme3.bullet.util.CollisionShapeFactory;
@@ -52,6 +53,9 @@ public class Main extends SimpleApplication {
   Geometry doorOne, doorTwo, colShape1, colShape2, colShape3;
   Light alarm_light;
   FogFilter fog;
+  int sceneCollisionGroup = 1;
+  int playerCollisionGroup = 2;
+  
   public Player player;
 
     
@@ -75,6 +79,7 @@ public class Main extends SimpleApplication {
         stateManager.attach(bullet);
         player = new Player(cam, bullet, this);
         player.setUpKeys();
+     
         initGeometries();
         
         
@@ -113,6 +118,7 @@ public class Main extends SimpleApplication {
         
         CollisionShape sceneShape = CollisionShapeFactory.createMeshShape((Node) level_1);
         scenePhys = new RigidBodyControl(sceneShape, 0);
+        scenePhys.setCollisionGroup(sceneCollisionGroup);
         level_1.addControl(scenePhys);
         
         rootNode.attachChild(level_1);
@@ -246,11 +252,11 @@ public class Main extends SimpleApplication {
         
         public void initMaterial() {
              magenta = new Material(assetManager, "Common/MatDefs/Light/Lighting.j3md");
-        magenta.setBoolean("UseMaterialColors", true);
-	magenta.setColor("Ambient", ColorRGBA.Gray);
-        magenta.setColor("Diffuse", ColorRGBA.Blue);
-        magenta.setColor("Specular", ColorRGBA.Red);
-        magenta.setFloat("Shininess", 2f); // shininess from 1-128
+            magenta.setBoolean("UseMaterialColors", true);
+            magenta.setColor("Ambient", ColorRGBA.Gray);
+            magenta.setColor("Diffuse", ColorRGBA.Blue);
+            magenta.setColor("Specular", ColorRGBA.Red);
+            magenta.setFloat("Shininess", 2f); // shininess from 1-128
         }
         
         public void initCam() {
