@@ -30,11 +30,19 @@ public class GrenadeController  extends AbstractControl implements AnalogListene
     private int timer = 50;
     private boolean live = true;
     private Vector3f dir = new Vector3f();
+    private Vector3f col1, col2, col3, col4, col5;
+
     
     public GrenadeController(Grenade grenade){
         this.main = grenade.main;
         this.grenade = grenade;
         InitPhysics();
+        
+        col1 = new Vector3f(12.45f, -.05f, 6.1f);
+        col2 = new Vector3f(6.6f, 3.95f,7.8f);
+        col3 = new Vector3f(5.8f, 6.6f,4.6f);
+        col4 = new Vector3f(14f, 12.83f, 6f);
+        col5 = new Vector3f(23.3f, -.05f, 2.65f);
     }
     
     private PhysicsSpace getPhysicsSpace(){
@@ -68,6 +76,8 @@ public class GrenadeController  extends AbstractControl implements AnalogListene
             }
         }
         
+
+        
     }
 
     @Override
@@ -85,12 +95,26 @@ public class GrenadeController  extends AbstractControl implements AnalogListene
        grenadeRB.setEnabled(false);
         
        Vector3f grenadePos = grenadeRB.getPhysicsLocation();  
-        
        
-       if (true){
+       boolean collision = false;
+       
+       for (Shape s : main.shapes) {
+            if (col1.distance(Grenade.geo_grenade.getWorldTranslation()) < 4f){
+                  collision=true;
+                  System.out.println("collided");
+            }else if(col2.distance(Grenade.geo_grenade.getWorldTranslation()) < 4f){
+                  collision=true;
+                  System.out.println("collided");
+            }else if(col3.distance(Grenade.geo_grenade.getWorldTranslation()) < 4f){
+                  collision=true;
+                  System.out.println("collided");
+            }
+        }
+       
+       if (!collision){
            Shape shape = new Shape(main);
            shape.rotate(90 * FastMath.DEG_TO_RAD, 0, 0);
-           
+           shape.setLocalTranslation(col1);
            main.getRootNode().attachChild(shape);
            main.shapes.add(shape);
 
