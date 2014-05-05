@@ -25,8 +25,6 @@ public class StartScreen extends AbstractAppState  {
     Main main;
     AppStateManager asm;
     BitmapText text;
-        
-
     
     @Override
     public void initialize(AppStateManager stateManager, Application app) {
@@ -34,11 +32,7 @@ public class StartScreen extends AbstractAppState  {
         asm = stateManager;
 	Game game = new Game();
         stateManager.attach(game);
-
-	
     }
-    
-
     
     @Override
     public void update(float tpf) {
