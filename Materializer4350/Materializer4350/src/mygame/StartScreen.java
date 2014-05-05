@@ -20,18 +20,13 @@ import com.jme3.ui.Picture;
  *
  * @author Nick
  */
-public class StartScreen extends AbstractAppState implements ActionListener {
+public class StartScreen extends AbstractAppState  {
     
     Main main;
     AppStateManager asm;
     BitmapText text;
         
-    public void onAction(String name, boolean isPressed, float tpf) {
-        
-        if (name.equals("start")) {
-            startGame();
-        }
-    }
+
     
     @Override
     public void initialize(AppStateManager stateManager, Application app) {
@@ -39,28 +34,11 @@ public class StartScreen extends AbstractAppState implements ActionListener {
         asm = stateManager;
 	Game game = new Game();
         stateManager.attach(game);
-        /*
-        Picture pic = new Picture("HUD Picture");
-        pic.setImage(main.getAssetManager(), "Interface/resources/background.png", true);
-        pic.setWidth(1024);
-        pic.setHeight(600);
-        pic.setPosition(0, 0);
-        main.getGuiNode().attachChild(pic);
-        //init input
-        InputManager inputManager = main.getInputManager();
-        inputManager.addMapping("start", new KeyTrigger(KeyInput.KEY_B));
-        inputManager.addListener(this, "start"); */
+
 	
     }
     
-    public void startGame() {
-        Game game = new Game();
-        asm.detach(this);
-        main.clearJMonkey(main);
-        asm.attach(game);
-        
-        
-    }
+
     
     @Override
     public void update(float tpf) {
