@@ -45,87 +45,86 @@ import com.jme3.post.FilterPostProcessor;
 
 /**
  * test
- * @author 
+ *
+ * @author
  */
 public class Game extends AbstractAppState {
 
-  
-
-  private Level lvl;
-  Node loadedNode;
-  private BulletAppState bullet;
-  RigidBodyControl scenePhys;
-  Material mat1, magenta;
-  Geometry doorOne, doorTwo;
-  Light alarm_light;
-  FogFilter fog;
-  Main main;
-  AppStateManager asm;
+    private Level lvl;
+    Node loadedNode;
+    private BulletAppState bullet;
+    RigidBodyControl scenePhys;
+    Material mat1, magenta;
+    Geometry doorOne, doorTwo;
+    Light alarm_light;
+    FogFilter fog;
+    Main main;
+    AppStateManager asm;
 
     @Override
     public void initialize(AppStateManager stateManager, Application app) {
-        
+
         main = (Main) app;
         asm = stateManager;
         bullet = main.bullet;
-        
+
         initFog();
         initAudio();
-        
+
         lvl = new Level(1, main);
         lvl.addToScene(bullet, main.getRootNode());
     }
-    
+
     @Override
     public void update(float tpf) {
         main.player.update(tpf);
         System.out.println(main.player.getLoc().x);
-        
+
         if (main.player.getLoc().x < 0.5f) {
-            
+
             lvl.removeFromScene(bullet, main.getRootNode());
             main.player.resetPlayer();
-            
-            if (lvl.levelNum == 1)
+
+            if (lvl.levelNum == 1) {
                 lvl = new Level(2, main);
-            else
-                    lvl = new Level(3, main);
-            
+            } else {
+                lvl = new Level(3, main);
+            }
+
             lvl.addToScene(bullet, main.getRootNode());
         }
-        
+
     }
-    
+
     public void initFog() {
-        
+
         //fog effect
-        FilterPostProcessor fpp=new FilterPostProcessor(main.getAssetManager());
-        FogFilter fog=new FogFilter();
+        FilterPostProcessor fpp = new FilterPostProcessor(main.getAssetManager());
+        FogFilter fog = new FogFilter();
         fog.setFogColor(new ColorRGBA(0.9f, 0.9f, 0.9f, 1.0f));
         fog.setFogDistance(155);
         fog.setFogDensity(2f);
         fpp.addFilter(fog);
         main.getViewPort().addProcessor(fpp);
     }
-    
-        
+
     public void initAudio() {
         AudioNode alarmAudio = new AudioNode(main.getAssetManager(), "Sounds/alarm.ogg");
-        alarmAudio.setPositional(false); 
+        alarmAudio.setPositional(false);
         alarmAudio.setDirectional(false);
         alarmAudio.setVolume(75f);
         alarmAudio.setLooping(true);
         main.getRootNode().attachChild(alarmAudio);
         alarmAudio.play();
-        
+
         AudioNode musicAudio = new AudioNode(main.getAssetManager(), "Sounds/music.ogg");
-        musicAudio.setPositional(false); 
+        musicAudio.setPositional(false);
         musicAudio.setDirectional(false);
         musicAudio.setVolume(.6f);
         musicAudio.setLooping(true);
         main.getRootNode().attachChild(musicAudio);
         musicAudio.play();
     }
-    
-        
+
+
 }
