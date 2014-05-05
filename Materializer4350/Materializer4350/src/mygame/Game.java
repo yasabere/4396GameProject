@@ -79,7 +79,8 @@ public class Game extends AbstractAppState {
     @Override
     public void update(float tpf) {
         main.player.update(tpf);
-        System.out.println(main.player.getLoc().x);
+        //System.out.println(main.player.getLoc().x);
+            lvl.updateLight(tpf);
         
         if (main.player.getLoc().x < 0.5f) {
             
