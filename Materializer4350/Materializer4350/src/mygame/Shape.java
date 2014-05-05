@@ -35,6 +35,8 @@ public class Shape extends Node {
      this.controller = new ShapeController(this);
      this.addControl(this.controller);
      
+     this.main.shapes.add(this);
+     
     }
     
     private void initMaterials() {
