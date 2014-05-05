@@ -114,13 +114,14 @@ public class Player implements ActionListener{
         pControl.setCollisionGroup(2);
         vDir.mult(15f);
         playerPos.add(vDir);
+        playerPos = playerPos.add(new Vector3f(0f, 5f, 0f));
         //dir.setZ(30f);
         //dir.y = 0f;
         //dir.z = 0;
         test.controller.getRigidBodyControl().setPhysicsLocation(playerPos);
-        test.controller.getRigidBodyControl().setCollisionGroup(1);
-        test.controller.getRigidBodyControl().removeCollideWithGroup(2);
-        pControl.removeCollideWithGroup(1);
+        //test.controller.getRigidBodyControl().setCollisionGroup(1);
+        //test.controller.getRigidBodyControl().removeCollideWithGroup(2);
+        //pControl.removeCollideWithGroup(1);
         //test.
         test.controller.getRigidBodyControl().setLinearVelocity(cam.getDirection().mult(15));
       }
